@@ -1,7 +1,10 @@
 package com.example.assignment2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.assignment2.model.Lens;
+import com.example.assignment2.model.LensManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -18,8 +21,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MainActivity extends AppCompatActivity {
+    private LensManager lensManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,25 +33,37 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
+        lensManager = LensManager.getInstance();
+        lensManager.add(new Lens("Canon", 1.8, 50));
+        lensManager.add(new Lens("Tamron", 2.8, 90));
+        lensManager.add(new Lens("Sigma", 2.8, 200));
+        lensManager.add(new Lens("Nikon", 4, 200));
         populateListView();
         registerClickCallback();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, AddLensActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    private void populateListView() {
-        //create list of items
-        String[] myItems = {"blue", "green", "yellow", "red"};
+    public void onRestart() {
+        super.onRestart();
+        populateListView();
+    }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_items, myItems);
+    private void populateListView() {
+        List<String> StringLenses = new ArrayList<>();
+        String lensString;
+        for(int i = 0; i < lensManager.getNumLenses(); i++){
+            lensString = "  " + i + ". " + lensManager.get(i).getDescription();
+            StringLenses.add(lensString);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_items, StringLenses);
 
         ListView list = findViewById(R.id.listViewCameras);
         list.setAdapter(adapter);

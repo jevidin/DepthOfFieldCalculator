@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddLensActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#33B2FF"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Add lens"
+        app:titleTextColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/add_txtMake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Make:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <EditText
+        android:id="@+id/add_inputMake"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:hint="ex: Canon"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/add_txtMake"
+        app:layout_constraintTop_toBottomOf="@+id/add_txtMake" />
+
+    <TextView
+        android:id="@+id/add_txtFocalLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text=" Focal Length (mm)"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/add_inputMake"
+        app:layout_constraintTop_toBottomOf="@+id/add_inputMake" />
+
+    <EditText
+        android:id="@+id/add_inputFocalLength"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:hint=" ex: 200 for 200mm"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/add_txtFocalLength"
+        app:layout_constraintTop_toBottomOf="@+id/add_txtFocalLength" />
+
+    <TextView
+        android:id="@+id/add_textAperture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Aperture:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/add_inputFocalLength"
+        app:layout_constraintTop_toBottomOf="@+id/add_inputFocalLength" />
+
+    <EditText
+        android:id="@+id/add_inputAperture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:hint="ex: 2.8 for F2.8"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/add_textAperture"
+        app:layout_constraintTop_toBottomOf="@+id/add_textAperture" />
+
+    <Button
+        android:id="@+id/add_btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Save"
+        app:layout_constraintStart_toStartOf="@+id/add_inputAperture"
+        app:layout_constraintTop_toBottomOf="@+id/add_inputAperture" />
+
+    <Button
+        android:id="@+id/add_btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="250dp"
+        android:text="Cancel"
+        app:layout_constraintStart_toStartOf="@+id/add_btnSave"
+        app:layout_constraintTop_toTopOf="@+id/add_btnSave" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
