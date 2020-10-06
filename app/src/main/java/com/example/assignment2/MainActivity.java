@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private LensManager lensManager;
@@ -35,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         lensManager = LensManager.getInstance();
         //lensManager.add(new Lens("Canon", 1.8, 50));
-       // lensManager.add(new Lens("Tamron", 2.8, 90));
+        //lensManager.add(new Lens("Tamron", 2.8, 90));
         //lensManager.add(new Lens("Sigma", 2.8, 200));
-       // lensManager.add(new Lens("Nikon", 4, 200));
+        //lensManager.add(new Lens("Nikon", 4, 200));
         populateListView();
-
+        updateUI();
         registerClickCallback();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,11 +55,13 @@ public class MainActivity extends AppCompatActivity {
     public void onRestart() {
         super.onRestart();
         populateListView();
+        updateUI();
     }
 
     private void populateListView() {
         List<String> StringLenses = new ArrayList<>();
         String lensString;
+
         for(int i = 0; i < lensManager.getNumLenses(); i++){
             lensString = "  " + (i+1) + ". " + lensManager.get(i).getDescription();
             StringLenses.add(lensString);
@@ -80,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void updateUI(){
+        TextView tv = findViewById(R.id.selectLensTextView);
+        String msg = "Please select a lens:";
+        if(lensManager.getNumLenses() == 0){
+            msg = "No lenses available. Please add a lens by pressing the '+' button on the bottom right.";
+        }
+        tv.setText(msg);
     }
 
     @Override
