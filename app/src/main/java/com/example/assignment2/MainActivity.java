@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lensManager = LensManager.getInstance();
-        lensManager.add(new Lens("Canon", 1.8, 50));
-        lensManager.add(new Lens("Tamron", 2.8, 90));
-        lensManager.add(new Lens("Sigma", 2.8, 200));
-        lensManager.add(new Lens("Nikon", 4, 200));
+        //lensManager.add(new Lens("Canon", 1.8, 50));
+       // lensManager.add(new Lens("Tamron", 2.8, 90));
+        //lensManager.add(new Lens("Sigma", 2.8, 200));
+       // lensManager.add(new Lens("Nikon", 4, 200));
         populateListView();
+
         registerClickCallback();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> StringLenses = new ArrayList<>();
         String lensString;
         for(int i = 0; i < lensManager.getNumLenses(); i++){
-            lensString = "  " + i + ". " + lensManager.get(i).getDescription();
+            lensString = "  " + (i+1) + ". " + lensManager.get(i).getDescription();
             StringLenses.add(lensString);
         }
 

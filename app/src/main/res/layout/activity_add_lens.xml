@@ -63,7 +63,7 @@
         android:layout_marginRight="5dp"
         android:ems="10"
         android:hint=" ex: 200 for 200mm"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/add_txtFocalLength"
         app:layout_constraintTop_toBottomOf="@+id/add_txtFocalLength" />
@@ -87,7 +87,7 @@
         android:layout_marginRight="5dp"
         android:ems="10"
         android:hint="ex: 2.8 for F2.8"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/add_textAperture"
         app:layout_constraintTop_toBottomOf="@+id/add_textAperture" />
