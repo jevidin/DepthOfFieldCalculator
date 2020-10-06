@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 TextView textView = (TextView)viewClicked;
                 String message = "you clicked number " + position + ", which is string :" + textView.getText().toString();
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+
+                Intent i = CalculateDOFActivity.makeLaunchIntent(MainActivity.this);
+                startActivity(i);
             }
         });
     }
