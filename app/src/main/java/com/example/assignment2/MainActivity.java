@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lensManager = LensManager.getInstance();
-        //lensManager.add(new Lens("Canon", 1.8, 50));
-        //lensManager.add(new Lens("Tamron", 2.8, 90));
-        //lensManager.add(new Lens("Sigma", 2.8, 200));
-        //lensManager.add(new Lens("Nikon", 4, 200));
+        lensManager.add(new Lens("Canon", 1.8, 50));
+        lensManager.add(new Lens("Tamron", 2.8, 90));
+        lensManager.add(new Lens("Sigma", 2.8, 200));
+        lensManager.add(new Lens("Nikon", 4, 200));
         populateListView();
         updateUI();
         registerClickCallback();
