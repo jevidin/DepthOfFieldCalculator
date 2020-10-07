@@ -11,10 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.assignment2.model.DoFCalculator;
 import com.example.assignment2.model.Lens;
 import com.example.assignment2.model.LensManager;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +26,6 @@ public class CalculateDOFActivity extends AppCompatActivity {
     private LensManager lensManager;
     private Lens selectedLens;
 
-    private String[] viewCalculated = {"Near Focal Point: Enter all values", "Far Focal Point: Enter all values",
-                                    "Depth of Field: Enter all values", "Hyper Focal Point: Enter all values"};
 
 
     @Override
@@ -44,12 +45,28 @@ public class CalculateDOFActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                boolean validInput = true;
                 EditText textInputCOC = findViewById(R.id.inputCOC);
                 double COC = Double.parseDouble(textInputCOC.getText().toString());
                 EditText textInputDistance = findViewById(R.id.inputDistance);
                 double distance = Double.parseDouble(textInputDistance.getText().toString());
                 EditText textInputAperture = findViewById(R.id.inputAperture);
                 double aperture = Double.parseDouble(textInputAperture.getText().toString());
+                if(aperture < selectedLens.getMaxAperture()){
+                    validInput = false;
+                    Toast.makeText(CalculateDOFActivity.this, "Invalid Aperture!", Toast.LENGTH_LONG).show();
+                }
+                if(validInput) {
+                    DoFCalculator dofCalculator = new DoFCalculator(COC, selectedLens, aperture, distance);
+                    TextView hyperfocalText = findViewById(R.id.textViewHFP);
+                    hyperfocalText.setText("Hyper Focal Point: " + formatM(dofCalculator.getHyperfocalDistanceInM()) + "m");
+                    TextView nearfocalText = findViewById(R.id.textViewNFP);
+                    nearfocalText.setText("Near Focal Point: " + formatM(dofCalculator.getNearFocalPointInM()) + "m");
+                    TextView farfocalText = findViewById(R.id.textViewFFP);
+                    farfocalText.setText("Far Focal Point: " + formatM(dofCalculator.getFarFocalPointInM()) + "m");
+                    TextView dofText = findViewById(R.id.textViewDOF);
+                    dofText.setText("Depth of Field: " + formatM(dofCalculator.getDepthOfFieldInM()) + "m");
+                }
 
             }
         });
@@ -77,6 +94,11 @@ public class CalculateDOFActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private String formatM(double distanceInM) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(distanceInM);
     }
 
     public static Intent makeLaunchIntent(Context context, int lensIdx){

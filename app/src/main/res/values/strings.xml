@@ -14,7 +14,7 @@
     <string name="far_focal_point">Far Focal Point:</string>
     <string name="depth_of_field">Depth of Field:</string>
     <string name="hyper_focal_point">Hyper Focal Point:</string>
-    <string name="displayLensDetails">Photo details with </string>
+    <string name="displayLensDetails">Photo details with: </string>
     <string name="circle_of_confusion">Circle of Confusion [m]:</string>
     <string name="distance_to_subject">Distance to subject [m]:</string>
     <string name="selected_aperture">Selected aperture:</string>

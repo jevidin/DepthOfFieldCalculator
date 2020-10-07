@@ -25,19 +25,16 @@
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="103dp"
         android:text="@string/backBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAperture"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAperture" />
 
     <TextView
         android:id="@+id/textViewNFP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
         android:text="@string/near_focal_point"
         android:textSize="18sp"
@@ -56,7 +53,7 @@
 
     <TextView
         android:id="@+id/textViewDOF"
-        android:layout_width="157dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/depth_of_field"
@@ -78,7 +75,7 @@
         android:id="@+id/viewLens"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="@string/displayLensDetails"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textViewHFP"
@@ -88,12 +85,10 @@
         android:id="@+id/txtCOC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
         android:layout_marginTop="30dp"
         android:text="@string/circle_of_confusion"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/viewLens"
         app:layout_constraintTop_toBottomOf="@+id/viewLens" />
 
     <TextView
@@ -128,25 +123,29 @@
 
     <EditText
         android:id="@+id/inputCOC"
-        android:layout_width="171dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:ems="10"
         android:hint="@string/inputCOCEx"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="@+id/inputDistance"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text="0.029"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtCOC"
         app:layout_constraintTop_toBottomOf="@+id/viewLens" />
 
     <EditText
         android:id="@+id/inputDistance"
-        android:layout_width="177dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:ems="10"
         android:hint="@string/inputDistanceEx"
         android:inputType="numberDecimal"
@@ -156,16 +155,17 @@
 
     <EditText
         android:id="@+id/inputAperture"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:ems="10"
         android:hint="@string/inputApertureEx"
         android:inputType="numberDecimal"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/inputDistance"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtAperture"
         app:layout_constraintTop_toBottomOf="@+id/inputDistance" />
 

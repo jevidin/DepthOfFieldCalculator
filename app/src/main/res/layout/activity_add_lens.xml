@@ -22,8 +22,8 @@
         android:id="@+id/add_txtMake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="24dp"
         android:text="Make:"
         android:textSize="18sp"
@@ -103,7 +103,7 @@
 
     <Button
         android:id="@+id/add_btnCancel"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
         android:layout_marginLeft="250dp"

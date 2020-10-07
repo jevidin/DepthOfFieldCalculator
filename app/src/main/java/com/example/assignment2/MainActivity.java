@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     public void onRestart() {
         super.onRestart();
         populateListView();
