@@ -25,19 +25,25 @@ public class CalculateDOFActivity extends AppCompatActivity {
     private static final String EXTRA_LENS_INDEX = "com.example.assignment2.CalculateDOFActivity - selected lens";
     private LensManager lensManager;
     private Lens selectedLens;
-
+    private int lensIdx;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_dof);
-
         lensManager = LensManager.getInstance();
         extractDataFromIntent();
         displayLens();
         setUpCalculateBtn();
         setUpBackBtn();
+        setUpEditBtn();
+        setUpDeleteBtn();
+    }
+
+    public void onRestart() {
+        super.onRestart();
+        displayLens();
     }
 
     private void setUpCalculateBtn() {
@@ -46,28 +52,26 @@ public class CalculateDOFActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean validInput = true;
-                String cocErrorMessage = "";
-                String distanceErrorMessage = "";
-                String apertureErrorMessage = "";
+
                 EditText textInputCOC = findViewById(R.id.inputCOC);
                 double COC = Double.parseDouble(textInputCOC.getText().toString());
-                if(COC < 0){
+                if (COC < 0) {
                     validInput = false;
-                    cocErrorMessage += "Invalid Circle of Confusion!\n";
+                    textInputCOC.setError("Invalid COC!");
                 }
                 EditText textInputDistance = findViewById(R.id.inputDistance);
                 double distance = Double.parseDouble(textInputDistance.getText().toString());
-                if(distance < 0){
+                if (distance < 0) {
                     validInput = false;
-                    distanceErrorMessage += "Invalid Distance!\n";
+                    textInputDistance.setError("Invalid Distance!");
                 }
                 EditText textInputAperture = findViewById(R.id.inputAperture);
                 double aperture = Double.parseDouble(textInputAperture.getText().toString());
-                if(aperture < selectedLens.getMaxAperture()){
+                if (aperture < selectedLens.getMaxAperture()) {
                     validInput = false;
-                    apertureErrorMessage += "Invalid Aperture!";
+                    textInputAperture.setError("Invalid Aperture!");
                 }
-                if(validInput) {
+                if (validInput) {
                     DoFCalculator dofCalculator = new DoFCalculator(COC, selectedLens, aperture, distance);
                     TextView hyperfocalText = findViewById(R.id.textViewHFP);
                     hyperfocalText.setText("Hyper Focal Point: " + formatM(dofCalculator.getHyperfocalDistanceInM()) + "m");
@@ -77,10 +81,6 @@ public class CalculateDOFActivity extends AppCompatActivity {
                     farfocalText.setText("Far Focal Point: " + formatM(dofCalculator.getFarFocalPointInM()) + "m");
                     TextView dofText = findViewById(R.id.textViewDOF);
                     dofText.setText("Depth of Field: " + formatM(dofCalculator.getDepthOfFieldInM()) + "m");
-                }
-                else{
-                    String errorMessage = "ERROR: \n" + cocErrorMessage + distanceErrorMessage + apertureErrorMessage;
-                    Toast.makeText(CalculateDOFActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -96,7 +96,7 @@ public class CalculateDOFActivity extends AppCompatActivity {
 
     private void extractDataFromIntent() {
         Intent intent = getIntent();
-        int lensIdx = intent.getIntExtra(EXTRA_LENS_INDEX, 0);
+        lensIdx = intent.getIntExtra(EXTRA_LENS_INDEX, 0);
         selectedLens = lensManager.get(lensIdx);
     }
 
@@ -111,14 +111,38 @@ public class CalculateDOFActivity extends AppCompatActivity {
         });
     }
 
-    private String formatM(double distanceInM) {
-        DecimalFormat df = new DecimalFormat("0.00");
-        return df.format(distanceInM);
-    }
+
 
     public static Intent makeLaunchIntent(Context context, int lensIdx){
         Intent intent = new Intent(context, CalculateDOFActivity.class);
         intent.putExtra(EXTRA_LENS_INDEX, lensIdx);
         return intent;
+    }
+
+    private void setUpEditBtn(){
+        Button btn = findViewById(R.id.btnEdit);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = EditLensActivity.makeLaunchIntent(CalculateDOFActivity.this, lensIdx);
+                startActivity(i);
+            }
+        });
+    }
+
+    private void setUpDeleteBtn(){
+        Button btn = findViewById(R.id.btnDelete);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lensManager.remove(selectedLens);
+                finish();
+            }
+        });
+    }
+
+    private String formatM(double distanceInM) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(distanceInM);
     }
 }

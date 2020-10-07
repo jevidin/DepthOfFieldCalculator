@@ -169,4 +169,22 @@
         app:layout_constraintStart_toEndOf="@+id/txtAperture"
         app:layout_constraintTop_toBottomOf="@+id/inputDistance" />
 
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Edit"
+        app:layout_constraintStart_toStartOf="@+id/calculateBtn"
+        app:layout_constraintTop_toBottomOf="@+id/calculateBtn" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Delete"
+        app:layout_constraintStart_toStartOf="@+id/Calculate_btnBack"
+        app:layout_constraintTop_toBottomOf="@+id/Calculate_btnBack" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

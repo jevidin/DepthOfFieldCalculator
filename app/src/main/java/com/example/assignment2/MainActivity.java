@@ -79,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-//                TextView textView = (TextView)viewClicked;
-//                String message = "you clicked number " + position + ", which is string :" + textView.getText().toString();
-//                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
 
                 Intent i = CalculateDOFActivity.makeLaunchIntent(MainActivity.this, position);
                 startActivity(i);
