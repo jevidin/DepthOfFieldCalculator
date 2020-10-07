@@ -46,15 +46,26 @@ public class CalculateDOFActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean validInput = true;
+                String cocErrorMessage = "";
+                String distanceErrorMessage = "";
+                String apertureErrorMessage = "";
                 EditText textInputCOC = findViewById(R.id.inputCOC);
                 double COC = Double.parseDouble(textInputCOC.getText().toString());
+                if(COC < 0){
+                    validInput = false;
+                    cocErrorMessage += "Invalid Circle of Confusion!\n";
+                }
                 EditText textInputDistance = findViewById(R.id.inputDistance);
                 double distance = Double.parseDouble(textInputDistance.getText().toString());
+                if(distance < 0){
+                    validInput = false;
+                    distanceErrorMessage += "Invalid Distance!\n";
+                }
                 EditText textInputAperture = findViewById(R.id.inputAperture);
                 double aperture = Double.parseDouble(textInputAperture.getText().toString());
                 if(aperture < selectedLens.getMaxAperture()){
                     validInput = false;
-                    Toast.makeText(CalculateDOFActivity.this, "Invalid Aperture!", Toast.LENGTH_LONG).show();
+                    apertureErrorMessage += "Invalid Aperture!";
                 }
                 if(validInput) {
                     DoFCalculator dofCalculator = new DoFCalculator(COC, selectedLens, aperture, distance);
@@ -66,6 +77,10 @@ public class CalculateDOFActivity extends AppCompatActivity {
                     farfocalText.setText("Far Focal Point: " + formatM(dofCalculator.getFarFocalPointInM()) + "m");
                     TextView dofText = findViewById(R.id.textViewDOF);
                     dofText.setText("Depth of Field: " + formatM(dofCalculator.getDepthOfFieldInM()) + "m");
+                }
+                else{
+                    String errorMessage = "ERROR: \n" + cocErrorMessage + distanceErrorMessage + apertureErrorMessage;
+                    Toast.makeText(CalculateDOFActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                 }
 
             }
