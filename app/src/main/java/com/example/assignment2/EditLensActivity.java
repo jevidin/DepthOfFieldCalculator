@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,8 +31,6 @@ public class EditLensActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_lens);
 
         lensManager = LensManager.getInstance();
-        setupCancelButton();
-        setupSaveButton();
         extractDataFromIntent();
     }
 
@@ -41,14 +41,16 @@ public class EditLensActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setupSaveButton() {
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.action_back:
 
-        Button btn = findViewById(R.id.edit_btnSave);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                finish();
+                return true;
+            case R.id.action_save:
+
                 boolean validInput = true;
-
                 EditText textInputMake = findViewById(R.id.edit_inputMake);
                 newMake = textInputMake.getText().toString();
                 if(newMake.length() == 0){
@@ -71,23 +73,14 @@ public class EditLensActivity extends AppCompatActivity {
                     selectedLens.setMake(newMake);
                     selectedLens.setMaxAperture(newAperture);
                     selectedLens.setFocalLengthInMM(newFocalLength);
-                    Toast.makeText(EditLensActivity.this, "Lens Edited.", Toast.LENGTH_SHORT);
                     finish();
                 }
-
-            }
-        });
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
-    private void setupCancelButton(){
-        Button btn = findViewById(R.id.edit_btnCancel);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
 
     private void extractDataFromIntent() {
         Intent intent = getIntent();

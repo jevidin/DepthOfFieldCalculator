@@ -95,25 +95,4 @@
         app:layout_constraintStart_toStartOf="@+id/add_textAperture"
         app:layout_constraintTop_toBottomOf="@+id/add_textAperture" />
 
-    <Button
-        android:id="@+id/add_btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Save"
-        app:layout_constraintEnd_toEndOf="@+id/add_inputAperture"
-        app:layout_constraintTop_toTopOf="@+id/add_btnCancel" />
-
-    <Button
-        android:id="@+id/add_btnCancel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:text="Cancel"
-        app:layout_constraintStart_toStartOf="@+id/add_inputAperture"
-        app:layout_constraintTop_toBottomOf="@+id/add_inputAperture" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

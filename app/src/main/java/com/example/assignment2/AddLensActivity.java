@@ -1,10 +1,12 @@
 package com.example.assignment2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,28 +25,19 @@ public class AddLensActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_lens);
-        //Toolbar addToolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(addToolbar);
         lensManager = LensManager.getInstance();
-        setupCancelButton();
-        setupSaveButton();
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_add, menu);
-        return true;
-    }
-
-    private void setupSaveButton() {
-
-        Button btn = findViewById(R.id.add_btnSave);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.action_back:
+                //Toast.makeText(CalculateDOFActivity.this, "Back pressed", Toast.LENGTH_SHORT).show();
+                finish();
+                return true;
+            case R.id.action_save:
                 boolean validInput = true;
-
                 EditText textInputMake = findViewById(R.id.add_inputMake);
                 newMake = textInputMake.getText().toString();
                 if(newMake.length() == 0){
@@ -67,19 +60,17 @@ public class AddLensActivity extends AppCompatActivity {
                     lensManager.add(new Lens(newMake, newAperture, newFocalLength));
                     finish();
                 }
-
-            }
-        });
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
-
-    private void setupCancelButton(){
-        Button btn = findViewById(R.id.add_btnCancel);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_add, menu);
+        return true;
     }
+
 }

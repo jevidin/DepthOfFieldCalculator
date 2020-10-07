@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -38,7 +40,6 @@ public class CalculateDOFActivity extends AppCompatActivity {
         extractDataFromIntent();
         displayLens();
         setUpCalculateBtn();
-        setUpBackBtn();
         setUpEditBtn();
         setUpDeleteBtn();
     }
@@ -48,6 +49,18 @@ public class CalculateDOFActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_calculate, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.action_back:
+                //Toast.makeText(CalculateDOFActivity.this, "Back pressed", Toast.LENGTH_SHORT).show();
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onRestart() {
@@ -108,18 +121,6 @@ public class CalculateDOFActivity extends AppCompatActivity {
         lensIdx = intent.getIntExtra(EXTRA_LENS_INDEX, 0);
         selectedLens = lensManager.get(lensIdx);
     }
-
-
-    private void setUpBackBtn() {
-        Button btn = findViewById(R.id.Calculate_btnBack);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
-
 
 
     public static Intent makeLaunchIntent(Context context, int lensIdx){
