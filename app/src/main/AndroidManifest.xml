@@ -9,9 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditLensActivity"></activity>
-        <activity android:name=".CalculateDOFActivity" />
-        <activity android:name=".AddLensActivity" />
+        <activity android:name=".EditLensActivity"
+                  android:label = "Edit Lens">
+
+        </activity>
+        <activity android:name=".CalculateDOFActivity"
+                  android:label = "Calculate DOF">
+
+        </activity>
+        <activity android:name=".AddLensActivity"
+                  android:label="Add Lens">
+
+        </activity>>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

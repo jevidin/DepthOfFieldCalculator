@@ -22,4 +22,11 @@
     <string name="inputCOCEx">ex: 0.029 for 0.029m</string>
     <string name="inputDistanceEx">ex: 1.5 for 1.5m</string>
     <string name="inputApertureEx">ex: 2.8 for F2.8</string>
+    <string name="ex_canon">ex: Canon</string>
+    <string name="focal_length_mm">Focal Length (mm):</string>
+    <string name="make">Make:</string>
+    <string name="ex_200_for_200mm">ex: 200 for 200mm</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+
 </resources>

@@ -6,17 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".AddLensActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#33B2FF"
-        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Add lens"
-        app:titleTextColor="@android:color/white" />
+
+        >
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <TextView
         android:id="@+id/add_txtMake"
@@ -24,11 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="24dp"
-        android:text="Make:"
+        android:layout_marginTop="10dp"
+        android:text="@string/make"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/add_inputMake"
@@ -38,7 +41,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:ems="10"
-        android:hint="ex: Canon"
+        android:hint="@string/ex_canon"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/add_txtMake"
@@ -49,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Focal Length (mm):"
+        android:text="@string/focal_length_mm"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/add_inputMake"
         app:layout_constraintTop_toBottomOf="@+id/add_inputMake" />
@@ -62,7 +65,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:ems="10"
-        android:hint=" ex: 200 for 200mm"
+        android:hint="@string/ex_200_for_200mm"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/add_txtFocalLength"
