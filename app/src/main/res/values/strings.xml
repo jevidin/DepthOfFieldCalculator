@@ -9,4 +9,17 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="backBtn">Back</string>
+    <string name="near_focal_point">Near Focal Point:</string>
+    <string name="far_focal_point">Far Focal Point:</string>
+    <string name="depth_of_field">Depth of Field:</string>
+    <string name="hyper_focal_point">Hyper Focal Point:</string>
+    <string name="displayLensDetails">Photo details with </string>
+    <string name="circle_of_confusion">Circle of Confusion [m]:</string>
+    <string name="distance_to_subject">Distance to subject [m]:</string>
+    <string name="selected_aperture">Selected aperture:</string>
+    <string name="calculateBtn">Calculate</string>
+    <string name="inputCOCEx">ex: 0.029 for 0.029m</string>
+    <string name="inputDistanceEx">ex: 1.5 for 1.5m</string>
+    <string name="inputApertureEx">ex: 2.8 for F2.8</string>
 </resources>

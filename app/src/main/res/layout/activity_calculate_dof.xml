@@ -22,13 +22,151 @@
         android:id="@+id/Calculate_btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="524dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="103dp"
-        android:text="Back"
+        android:text="@string/backBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAperture"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewNFP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/near_focal_point"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/textViewFFP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/far_focal_point"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewNFP"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNFP" />
+
+    <TextView
+        android:id="@+id/textViewDOF"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/depth_of_field"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewFFP"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFFP" />
+
+    <TextView
+        android:id="@+id/textViewHFP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/hyper_focal_point"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewDOF"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDOF" />
+
+    <TextView
+        android:id="@+id/viewLens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/displayLensDetails"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewHFP"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHFP" />
+
+    <TextView
+        android:id="@+id/txtCOC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/circle_of_confusion"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewLens" />
+
+    <TextView
+        android:id="@+id/txtDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/distance_to_subject"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/txtCOC"
+        app:layout_constraintTop_toBottomOf="@+id/txtCOC" />
+
+    <TextView
+        android:id="@+id/txtAperture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/selected_aperture"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/txtDistance"
+        app:layout_constraintTop_toBottomOf="@+id/txtDistance" />
+
+    <Button
+        android:id="@+id/calculateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:text="@string/calculateBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Calculate_btnBack" />
+
+    <EditText
+        android:id="@+id/inputCOC"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/inputCOCEx"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/inputDistance"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtCOC"
+        app:layout_constraintTop_toBottomOf="@+id/viewLens" />
+
+    <EditText
+        android:id="@+id/inputDistance"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:ems="10"
+        android:hint="@string/inputDistanceEx"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtDistance"
+        app:layout_constraintTop_toBottomOf="@+id/inputCOC" />
+
+    <EditText
+        android:id="@+id/inputAperture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:ems="10"
+        android:hint="@string/inputApertureEx"
+        android:inputType="numberDecimal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/inputDistance"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtAperture"
+        app:layout_constraintTop_toBottomOf="@+id/inputDistance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
