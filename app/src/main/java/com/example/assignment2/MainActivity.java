@@ -1,12 +1,15 @@
 package com.example.assignment2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.assignment2.model.Lens;
 import com.example.assignment2.model.LensManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,6 +24,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -35,11 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lensManager = LensManager.getInstance();
-        lensManager.add(new Lens("Canon", 1.8, 50));
-        lensManager.add(new Lens("Tamron", 2.8, 90));
-        lensManager.add(new Lens("Sigma", 2.8, 200));
-        lensManager.add(new Lens("Nikon", 4, 200));
+        getLensFromSharedPref();
         populateListView();
+        //storeLensToSharedPref();
         updateUI();
         registerClickCallback();
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -52,11 +54,64 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void getDefaultLens(){
+
+        lensManager.add(new Lens("Canon11", 1.8, 50));
+        lensManager.add(new Lens("Tamron", 2.8, 90));
+        lensManager.add(new Lens("Sigma", 2.8, 200));
+        lensManager.add(new Lens("Nikon", 4, 200));
+
+    }
+
+    private void getLensFromSharedPref(){
+        SharedPreferences prefs = getSharedPreferences("User's Lenses", MODE_PRIVATE);
+        //List<Lens> storedLens = new ArrayList<>();
+
+        Gson lensGson = new Gson();
+
+        String lensJson = prefs.getString("Lens Manager",null );
+        Type type = new TypeToken<List<Lens>>() {}.getType();
+        List<Lens> storedLens = lensGson.fromJson(lensJson, type);
+
+        if(storedLens == null){
+            //storedLens = new ArrayList<>();
+            getDefaultLens();
+        }
+        else {//turn arraylist to lensmanager
+            for(int i = 0; i < storedLens.size(); i++){
+                lensManager.add(storedLens.get(i));
+            }
+        }
+    }
+
+    private void storeLensToSharedPref() {
+        SharedPreferences prefs = getSharedPreferences("User's Lenses", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        List<Lens> storedLens = new ArrayList<>();
+
+        if(lensManager.getNumLenses() == 0){
+            getDefaultLens();
+        }
+
+        //turn manager into an arraylist
+        for(int i = 0; i < lensManager.getNumLenses();i++){
+            storedLens.add(lensManager.get(i));
+        }
+
+        String json = gson.toJson(storedLens);
+        editor.putString("Lens Manager", json);
+        editor.apply();
+    }
+
 
     public void onRestart() {
         super.onRestart();
+        storeLensToSharedPref();
         populateListView();
         updateUI();
+
     }
 
     private void populateListView() {
