@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String SHAREDPREF_LENSES = "User's Lenses";
+    public static final String SHAREDPREF_LENS_MANAGER = "Lens Manager";
     private LensManager lensManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         lensManager = LensManager.getInstance();
         getLensFromSharedPref();
         populateListView();
-        //storeLensToSharedPref();
         updateUI();
         registerClickCallback();
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -55,26 +56,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getDefaultLens(){
-
-        lensManager.add(new Lens("Canon11", 1.8, 50));
+        lensManager.add(new Lens("Canon", 1.8, 50));
         lensManager.add(new Lens("Tamron", 2.8, 90));
         lensManager.add(new Lens("Sigma", 2.8, 200));
         lensManager.add(new Lens("Nikon", 4, 200));
-
     }
 
     private void getLensFromSharedPref(){
-        SharedPreferences prefs = getSharedPreferences("User's Lenses", MODE_PRIVATE);
-        //List<Lens> storedLens = new ArrayList<>();
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREF_LENSES, MODE_PRIVATE);
 
         Gson lensGson = new Gson();
-
-        String lensJson = prefs.getString("Lens Manager",null );
+        String lensJson = prefs.getString(SHAREDPREF_LENS_MANAGER,null );
         Type type = new TypeToken<List<Lens>>() {}.getType();
         List<Lens> storedLens = lensGson.fromJson(lensJson, type);
 
         if(storedLens == null){
-            //storedLens = new ArrayList<>();
             getDefaultLens();
         }
         else {//turn arraylist to lensmanager
@@ -85,14 +81,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void storeLensToSharedPref() {
-        SharedPreferences prefs = getSharedPreferences("User's Lenses", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREF_LENSES, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
         Gson gson = new Gson();
         List<Lens> storedLens = new ArrayList<>();
 
         if(lensManager.getNumLenses() == 0){
-            getDefaultLens();
+            storedLens.add(new Lens("Canon", 1.8, 50));
+            storedLens.add(new Lens("Tamron", 2.8, 90));
+            storedLens.add(new Lens("Sigma", 2.8, 200));
+            storedLens.add(new Lens("Nikon", 4, 200));
         }
 
         //turn manager into an arraylist
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String json = gson.toJson(storedLens);
-        editor.putString("Lens Manager", json);
+        editor.putString(SHAREDPREF_LENS_MANAGER, json);
         editor.apply();
     }
 

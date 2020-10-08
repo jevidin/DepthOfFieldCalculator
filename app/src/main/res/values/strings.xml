@@ -28,5 +28,11 @@
     <string name="ex_200_for_200mm">ex: 200 for 200mm</string>
     <string name="back">Back</string>
     <string name="save">Save</string>
+    <string name="please_select">Please select a lens:</string>
+    <string name="aperture">Aperture:</string>
+    <string name="prefillCOC">0.029</string>
+    <string name="editBtn">Edit</string>
+    <string name="deleteBtn">Delete</string>
+    <string name="txtOptionalFeatures">Optional Features:\n1. App bar buttons\n2. Edit and delete lens\n3. Error checking input\n5. Save data\n7. Empty state</string>
 
 </resources>

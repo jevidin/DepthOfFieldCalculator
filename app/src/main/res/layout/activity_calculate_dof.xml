@@ -112,7 +112,7 @@
         android:ems="10"
         android:hint="@string/inputCOCEx"
         android:inputType="numberDecimal"
-        android:text="0.029"
+        android:text="@string/prefillCOC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtCOC"
         app:layout_constraintTop_toBottomOf="@+id/viewLens" />
@@ -155,7 +155,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="120dp"
-        android:text="Edit"
+        android:text="@string/editBtn"
         app:layout_constraintStart_toEndOf="@+id/calculateBtn"
         app:layout_constraintTop_toBottomOf="@+id/calculateBtn" />
 
@@ -166,7 +166,7 @@
         android:layout_marginTop="120dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:text="Delete"
+        android:text="@string/deleteBtn"
         app:layout_constraintEnd_toStartOf="@+id/calculateBtn"
         app:layout_constraintTop_toBottomOf="@+id/calculateBtn" />
 
