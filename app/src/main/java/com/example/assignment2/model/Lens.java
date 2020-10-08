@@ -1,5 +1,7 @@
 package com.example.assignment2.model;
 
+// Code taken from Assignment 1 solution
+
 /**
  * Represent a camera lens including the make, its maximum aperture, and focal length.
  */

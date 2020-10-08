@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+// Code taken from Assignment 1 solution
+
 /**
  * Data model: Store a collection of lenses.
  */

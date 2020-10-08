@@ -1,5 +1,7 @@
 package com.example.assignment2.model;
 
+// Code taken from Assignment 1 solution
+
 /**
  * Compute depth of field distances for a given lens and camera setup.
  * Math Sources:
